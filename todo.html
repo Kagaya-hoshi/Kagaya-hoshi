@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="bg.css">
+    <title>TO DO LIST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #775db1;
+            margin: 0;
+            padding: 0;
+            background-size: cover; /* Couvre l'ensemble de la page */
+            background-position: center; /* Centre l'image */
+            background-image:url("black.jfif")
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: powderblue;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            background: #e4e4e4;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+
+        h5{
+
+color: white;
+size: 16px;
+
+        }
+    </style>
+</head>
+<body>
+	<h5><marquee>what's on your mind today</marquee></h5>
+    <div class="container">
+        <h1>CREATE YOUR TO DO LIST</h1>
+        <form id="userForm">
+            <label for="name">Projet</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="task">Tâche à faire:</label>
+            <input type="text" id="task" name="task" required>
+
+            <label for="startDate">Date de début:</label>
+            <input type="date" id="startDate" name="startDate" required>
+
+            <label for="endDate">Date de fin:</label>
+            <input type="date" id="endDate" name="endDate" required>
+
+            <button type="submit">Enregistrer</button>
+        </form>
+        <h2>Liste des tâches</h2>
+        <ul id="userList"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userForm = document.getElementById('userForm');
+            const userList = document.getElementById('userList');
+
+            userForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const task = document.getElementById('task').value;
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+
+                const userItem = document.createElement('li');
+                userItem.textContent = `${name}: ${task} du ${startDate} au ${endDate}`;
+                userList.appendChild(userItem);
+
+                userForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
